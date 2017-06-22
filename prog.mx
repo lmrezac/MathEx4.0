@@ -1,0 +1,3 @@
+@define stringize(V) as #V
+
+print(stringize(V))

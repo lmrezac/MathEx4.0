@@ -1,0 +1,653 @@
+/*
+	MathX version 0.4.0 documentation/examples
+	Made by Lucas Rezac
+*/
+
+/** Section 1: Comments **/
+
+//this is a line comment
+
+/*
+	this is a multi-line comment
+*/
+
+//= This Is A Header Comment =\\ 
+
+/**
+	this is a different mult-line comment. It can be used for documentation purposes as well.
+	Some IDEs may not support this separately colored comment, but the standard color scheme does.
+	According to the standard, this comment can use the special code tag to use syntax coloring within 
+	the comment:
+	
+	{{ var x = 2; x++; print(x); }}
+	
+	Just like that.
+	
+	It can also have special tags for documentation purposes, like this:
+	
+	@param x
+	Although these actually should be used in the documentation comments.
+*/
+
+/+
+	this is a documentation comment. 
+	use these sparingly.
+	they are for IDEs to display information about a function or variable.
+	
+	They can use the @ tag to indicate special, easily-retrievable information
+	@param x:number
+	@name foo
+	@author "Me, myself, and I."
++/
+
+//+ same as above, just single line. Some IDEs may not support this as it is the same as the // comment.
+
+
+
+
+(* this is a doc comment. it is technically not really a comment,
+	as it can contain information that is saved
+	during runtime to an object or function *)
+
+(* for example: *)
+
+(* @param(x:optional&nonnull) 
+	@param(y:variadic)
+	@doc('This is a documentation string')
+	@name("this should be the variable's name")
+*)
+
+/** Section 2: Data Types **/
+
+//MathX has # main data types, outlined below:
+
+/+
+Name			| Values		| Description
+--------------------------------------
+undefined	| undefined	| when something is undefined, it literally has no definition.
+				| null 			| The null literal is used when there is an absence of value.
+boolean		| false			| A.K.A. 'no'
+				| true			| A.K.A. 'yes'
+number		| 0, 1, 2.5,.	| Numbers, all stored as double-precision decimals whether you like it or not
+string		| "hello"		| Strings represent words or series of letters. 
+				|					|   Can be indexed. They are like objects, with accessible functions.
+array			| {1,2,3}		| Arrays are sequences of values - they don't have to be the
+				|					|   same data type. Can be indexed. These too are like objects.
+object		| {age:5.2}	| Objects are like dictionarys: they are a set of key-value pairs.
+
++/
+
+/** Section 3: Math Operations **/
+
+//Math in MathX is pretty much like normal math
+
+/*The mathematical operators are: + plus - minus * times / divide 
+	% modulo ^ power <, <= less than >, >= greater than <> comparison
+
+Examples:						*/
+
+2+3				; // 5
+5-4				; // 1
+16.5 / 32.8		; // idk
+12 % 3			; // 0
+3^2				; // 9
+3*(5-4)			; // 3
+10 < 5			; // false
+4 <> 2			; // 2
+
+/** Section 4: Boolean Operations **/
+
+//MathX has the boolean type: true or false. 
+
+/*The logical operators are: && and || or ! not
+
+Examples:						*/
+
+true and false		; // false
+0 and 1					; // 0
+null or "hello"		; // "hello"
+3.2 or undefined		; // 3.2
+!true						; // false
+!0							; // true
+
+/* The last example above is pretty interesting: The not operator does
+ * not only work on boolean values. It works on any value. Values that 
+ * are intrinsically false are: false (duh), 0, null, and undefined.
+ * So, doing !!x is equivalent to calling Boolean(x) <- the cast function
+ */
+ 
+/** Section 5: Bitwise Operations **/
+
+//MathX supports (but not very well) bitwise operators.
+
+/*The bitwise operators are: << left shift >> right shift >>> unsigned right shift
+	~ binary not ^^ bitwise xor & bitwise and | bitwise or
+
+Examples:						*/
+
+3 << 2					;
+-5 >> 6					;
+32767 >>>	12			;
+~14						; // ~binary(000000001110) == binary(11111111110001) or something
+3 ^^ 2					;
+4 & 2						;
+3 | 2						;
+
+/** Section 6: Strings and Arrays **/
+
+/*MathX has arrays, which can contain sequences of values of any type.
+
+They look like this: 
+
+		{1,2,3,4,5}
+	
+Or like this:
+
+		{"Mary",-45.2,null,false,{3,2,undefined,"hello world"},19.8}
+		
+Access to an array's elements can be done in two ways:		*/
+
+//1. By indexing				
+
+		array = {1,2,3,4};
+		array[3];	//4
+
+//2. By slicing
+
+		array = {1,2,3,4,5,6};
+		array[0,3]; //{1,2,3,4}
+		
+/* When a negative number is put into an array index, 
+	it is treated as going from the end of the array. */
+	
+	array = {1,2,3,4};
+	array[-2]; //3
+	
+//To assign elements to an array is simple:
+
+	array = new Array();
+	array[0] = 10;
+	array[1] = 2;
+	array[x] = y;
+	
+// Strings can also be accessed by slicing and indexing:
+
+	str = "hello world";
+	str[0]; //"h"
+	str[3]; //"l"
+	str[3,7]; //"lo w"
+	str[3,7] = "xxxx"; //str == "helxxxxorld"
+	
+//To add an element to an array, use it's add function:
+
+	array.add(value);
+	
+//To add an element to a specific index, again use the add function:
+	
+	array.add(idx,value);
+	
+//To remove an element from an array, use the remove function:
+
+	array.remove(idx);
+	
+ //To get the length of an array OR a string, use the length property:
+ 
+	array.length;		//+  note that you can also assign a value to an array's length property. 
+	str.length;		//+ 	you cannot do that with strings.
+	
+//There is a special operator to test whether an array contains a specific element: the in operator
+
+	value in array;
+	3 in {1,32,3,4}; //true
+	
+/** Section 7: Objects **/
+
+//MathX's objects are pretty much exactly like JavaScript's objects.
+
+	obj = {member:value1,member2:value2};
+	
+//To access an objects member, you can do it one of two ways:
+	
+	obj.member
+	//Or
+	obj["member"]
+	
+//To assign to a member of an object, just do it the conventional way:
+	
+	obj.member = value3;
+	obj["member2"] = value4;
+	
+//You can use the in operator to test whether an object contains the specific key-value
+
+	"member" in obj
+	
+//An object can be in one of three separate states: normal, sealed, or finalized.
+
+//+ When an object is FINALIZED, new members cannot be added or removed. 
+//+ However, the values of existing members can be changed.
+
+//the syntax is thus: 		*note that finalize() isn't actually a function. It is an operator.
+	finalize(obj);
+	
+//+ When an object is SEALED, it is FINALIZED and every member is made constant.
+
+//the syntax is thus:
+	seal(obj);
+	
+//To remove members from an object, either assign undefined to them or use the delete statement:
+	obj.member = undefined;
+	delete obj.member2;
+	
+//To check if one variable is the same instance as another variable, and not just equal, use the special instance operators:
+
+	obj === obj2;
+	obj !== obj2;
+	
+/*If you are in a situation where you want to access a member of an object, but 
+the variable can be null or undefined (in which case trying to access a member will throw an error),
+you can use the null-catch operator ?. instead of an if statement or the conditional operator (more on those later).
+
+Syntax:						*/
+
+	obj?.member
+	
+//If it turns out that the object IS null or undefined, then this will just return null or undefined.
+
+/** Section 8: Variable declarations **/
+
+//To declare a local variable, use the following syntax:
+
+	var name;
+	
+//This will initialize the variable "name" to undefined. It will also check whether 
+//"name" already exists and, if it does, throw an error.
+
+//If you don't want to throw an error if the variable exists, just omit the var part:
+
+	name; 
+	
+//This will literally do nothing.
+//To actually make this useful, use the assign operator (ONLY the assign operator, none of the other assignment operators will work)
+
+	var name = value;
+	
+	// Or
+	
+	name = value;
+	
+//To delete a variable, use the delete statement:
+
+	delete name;
+	
+//+ Constants are variables that cannot be changed. They can be local variables or object members. They CANNOT be array entries.
+//To declare a constant variable, there are several ways:
+
+	const var name;
+	const name;
+	const name = value;
+	
+	//note that in the first two, the variable will be initialized to undefined and will actually become constant after it is set to a different value.
+	
+//To make an already existing variable constant without declaring it so, use const like a function:
+
+	const(name);
+	
+//this can be stacked with seal, finalize, and immutable like so:
+
+	seal(const(name));
+	
+	const(finalize(name));
+	
+	const(name = 2); // <- that also works
+	const(name) = 2; // <- this too works although it is pretty weird.
+	
+//There is also such thing as an immutable variable: This differs slightly from a constant variable only when the
+//value referenced is an object or an array. When that is true, then every member in that object will also be declared immutable.
+//If it is not an object or array, it is just like declaring it constant.
+	immutable var obj = {key1:value1,key2:value2};
+	
+//immutable, like const, can be used as a function:
+
+	immutable(obj);
+	
+//+ To sum up: +//
+
+	var name;
+	immutable(seal(finalize(const(name))) = {name:"Jerry"});
+	
+/** Section 9: Control Statements **/
+
+/*MathX has all the basic control statements from JavaScript: 
+	if-else, while, do-while, for, for-each, and with.
+
+	They will be outlined below.			*/
+	
+//+ The if statement
+/*An if statement is used when a certain body of code should only execute if a 
+	condition is met.
+
+Syntax:												*/
+
+if(condition)
+	body_statement;
+
+/*You can follow an if statement with @keyword else to execute a body of code
+	if the condition is NOT met.			
+	
+Syntax:												*/
+
+if(condition)
+	body_statement;
+else
+	body_statement;
+	
+/*Because MathX ignores extra whitespace, it does not need an 'elseif' keyword. Just
+follow the else statement with another if statement, it can be on the same line.
+
+Syntax:												*/
+
+if(condition)
+	body_statement;
+else if(condition)
+	body_statement;
+...
+else
+	body_statement;
+	
+//+ Loops and the break and continue statements
+/*Loops are used to execute a body of code zero or more times, depending on the loop.
+They can also iterate through arrays and other similar structures. Within a loop,
+you can use two special statements: the break and continue statements. A compilation
+error will be thrown if you try to use these outside a loop.
+*/
+(*The break statement*)
+/*If this statement is encountered, the loop will immediately stop executing.
+Syntax: */ break;
+(*The continue statement*)
+/*If this statement is encountered, the loop will stop its current execution of its
+body and start over from the beginning, testing its condition (if it has one)
+Syntax: */ continue;
+	
+//+ The while statement
+/*A while statement will keep executing its body WHILE its condition is true.
+
+Syntax:												*/
+
+while(condition)
+	body_statement;
+	
+/*There is also a do-while statement, which first executes its body THEN tests the condition.
+
+Syntax:												*/
+
+do 
+	body_statement; 
+while(condition);  //+ Note that it is good practice to enclose this specific body statement within brackets {}.
+	
+//+ The until statement
+/*Until statements work exactly like while statements, except that they will
+keep executing their bodies UNTIL their condition is true.
+
+Syntax:	just replace @keyword while with @keyword until. */
+
+//+ The loop statement
+/*A shorthand for a while(true) loop is to just use the loop statement.
+It will keep executing its body forever, or until it hits a break statement.
+
+Syntax:												*/
+
+loop 
+	body_statement; //+ Note that it is good practice to enclose this specific body statement within brackets {}.
+	
+//+ The stop statement
+//When this statement is encountered, the program immediately ends execution with an optional integral exit status.	
+
+stop <exit_status>;
+
+/** Section 10: Functions **/
+
+/*MathX's function object works similarly to JavaScript's, with a few key differences.
+
+The function literal looks like this:		*/
+
+	function(params){statements;}
+	
+//Usually, functions are used to modify a value (or values) in some way.
+//To return a value from a function, use the return keyword.
+
+	function(x){return Math.abs(x);}
+	
+//There is a shorthand for assigning a function to a variable, 
+//rather than using the var initializer:
+
+function foo(x,y){
+	do_some_stuff;
+}
+
+//There is also a shorthand for small, 1-line functions:
+
+function f(x)=2*x-3;
+
+//This is equivalent to doing the following:
+
+function f(x){
+	return 2*x-3;
+}
+
+
+//+ About function parameters: +//
+/*
+
+When a function s called, the passed values get set to the variable names 
+in the function header. These are always local variables, 
+and have precedence over global variables with the same names.
+
+MathX functions can do some pretty neat things that JavaScript functions can't.
+
+*/
+
+//+ Function parameters can have default values. 
+//The syntax works like you'd expect:
+
+function foo(bar=1.0){...}
+
+/+ If you want to pass an array to a function with the contents of the array as the parameters,
+use the 'unpack' operator: ... (ellipsis) +/
+
+var arr = {1,2,3,4};
+
+print(sum(arr...));
+
+/+ You can make a variadic parameter by following the last parameter name with an ellipsis.
+ When the function is called, ONLY the values that were left behind after the other
+ defined parameters, will be put into an array and stored in the variable that you gave
+ These variadic parameters can be given default values and declared constant, but cannot
+ be declared immutable.
++/
+
+function sum(a,values = {}...){
+	var count = a;
+	for(var arg in values){
+		count += arg;
+	}
+	return count;
+}
+
+/**  
+	All function parameters are optional, and you can even pass more or less values 
+	to the function than was specified in the header. Additional passed arguments
+	can be accessed by using the @param _args variable. 
+**/
+ 
+//For Example:
+
+function sum(){
+	var count = 0;
+	for(var arg in _args){
+		count += arg;
+	}
+	return count;
+}
+
+//+ Function parameters can be passed as constant or immutable
+//To do this, just add @keyword const or @keyword immutable before the variable name:
+
+function foo(const bar){...}
+
+//in the above example, @param bar would be constant ONLY within the scope of the function.
+
+function foo(immutable bar){...}
+
+//in the above example, trying to call @foo with a value that has not been made 
+//@immutable will throw a runtime error.
+
+//+ About function scopes
+/*
+	A function contains its own scope. Unlike the scopes of body statements, about
+	function's scope can only access variables declared within it, and global variables.
+	It cannot access variables from the scope it was created in, or any other parent
+	scopes, unless you use the constant specifier.
+*/
+
+//+ The constant function specifier
+/*This bit of syntax allows you to pass constant values into the function from the scope its
+was created in. These are evaluated upon function creation and are set as constants.
+To pass a constant specifier, use the following syntax:		*/
+
+var x = ...;
+
+function foo[x](bar){...}
+
+//where @param x is the constant value passed.
+
+//+ Note that you can ONLY pass variables by name or by alias. 
+//To pass them by alias:
+
+var x = ...;
+
+function foo[value=x](bar){...}
+
+//+ When declaring a function, note that the () and the [] are completely optional.
+
+/** Section 11: Additional Operators **/
+
+//MathX introduces some new operators and also brings back some customary operators.
+
+/+
+Operator Name 		| Syntax	| JS?	| Description
+-------------------------------------------------------------
+comparison				| a <> b	| no	| Equivalent to calling @code a.compareTo(b) in Java
+conditional			| a? b : c	| yes	| If @a is true, evaluates to @b. Otherwise, evaluates to @c.
+null-catch access	| a?.b		| no	| Equivalent to @code a? a.b : a
+index						| a[b]		| yes	| See Arrays and Objects section
+slice						| a[b,c]	| no	| See Arrays and Objects section
+in							| a in b 	| yes	| See Arrays and Objects section. Prefix the operator with ! to inverse the operation.
+xor						| a ^^ b	| ___	| Equivalent to JavaScript's ^ operator. This is because the ^ operator is for exponentiation (as it always should have been).
+exponentiation		| a^b			| ___	| @a to the power of @b. Equivalent to JavaScript's ** operator.
+assignment				| a op= b	| ___	| If you follow certain operators with an =, it will become an assignment operator.
+							|				|		| For the operator @op in the given syntax, the expression is equivalent to a = a @op b.
+							|				|		| Valid operators are: + - * / % ^ & | ^^ && || >> << >>> 
+negation assign		| --= a		| no	| Equivalent to @code a = -a
+absolute assign		| ++= a		| no	| Equivalent to @code a = +a or @code a = Math.abs(a)
+not assign				| !!= a		| no	| Equivalent to @code a = !a
+member call assign	| a.=b		| no	| Equivalent to @code a = a.b
+multiple equality	| a.==(b)	| no	| Acts like a function. For all the arguments passed, @code a == b is tested. Returns true if any one of the arguments returns true.
+							| a.==&(b)	| no	| Like the above, but tests if ALL the arguments passed equal @a.
+mult. inequality	| a.!=(b)	| no	| Like multiple equality: for all the arguments passed, @code a != b is tested. Returns true if all the arguments do not equal @a.
+							| a.!=|(b)	| no	| Like the above, but returns true if one or more of the arguments do not equal @a.
+of							| f of x	| no	| Equivalent to f(x)
+instanceof				| a instanceof b| Tests if a was created with a class that is, or extends, b. Prefix the operator with ! to inverse the operation.
+same instance			| a === b	| yes	| Tests if a is the same instance as b. That is, both variables refer to the same spot in memory.
+							| a !== b	| yes	| Equivalent to !(a === b).
+positate				| +a			| idk	| Equivalent to Math.abs(a)
+cast						| T(a)		| yes	| Calls the type @T's cast function. Equivalent to T.cast(a)
+call						| a(b)		| yes	| Calls the object's call function, or if it is actually a function, calls that function.
+
++/
+
+/** Section 12: Compiler Directives **/
+/*MathX has a compiler, despite being a scripting language. Because of that,
+it can have preprocesser directives like C. Currently, there are 3 directives.
+Directives must take place all on one line.
+
+The syntax for a directive is this: @directive_name [directive_arguments]
+*/
+
+//+ The if directive:
+/*
+Syntax: 
+@if <condition> 
+<code>
+@end
+OR
+@if <condition>
+<code>
+@else
+<code>
+@end
+OR
+@if <condition>
+<code>
+@elseif <condition>
+<code>
+@else
+<code>
+@end
+
+The condition is tested, and if it is true, then the following code is compiled.
+The rest of it is completely ignored. Fairly easy to understand.
+
+For condition, there are 7 operators: == (equal), != (not equal), not (or !), and (or && or &), or (or | or ||), defined (tests if the preceding word is defined), or !defined (self-explanatory)
+They follow the order of operations, and () are supported.
+*/
+//+ The define directive
+/*
+Syntax:
+@define <name>
+This defines <name> for the precompiler sequence. It is not a macro.
+@define <name> as <tokens>
+This defines a macro <name> which, when encountered, gets replaced with <tokens>
+@define <pattern> as <tokens>
+This one is tricky. <pattern> is a special type of regular expression, invented
+to match tokens instead of characters. The pattern must contain a <name> which is preceded
+by a # (no spaces between). The name does not have to be just letters, it can be anything really.
+The pattern syntax is below:
+*/
+/+
+Pattern			| Definition
+x					| matches the token 'x' only
+p?					| matches the token 'p' optionally, otherwise doesn't increment the search.
+(pattern)		| matches the contents of the pattern. Used with ? or |
+a|b				| matches the token 'a' or the token 'b'
+<A>				| matches any word token or number token, and sets a variable to that token. If it is encountered a second time, will only match the saved token.
+					| When the replacement is computed, any ${A} that is encountered is replaced with that token.
+<%>				| matches any token at all, then saves the variable ${%}
+x{#}				| where # is an integer. Matches x a minimum of # times.
+x+					| matches x one or more times
+x*					| matches x zero or more times
+%#					| matches the # token
+%%					| matches the % token
+%*					| matches the * token
+%+					| matches the + token
+%?					| matches the ? token
+%|					| matches the | token
+
++/
+/* So, some examples:
+
+<A> plus <B> 			will match 	x plus y	and	3 plus z	and	2.3 plus -4	but not		-x plus 3		or		+ plus 2
+to|2 be|b or|%| not|! 2 b 		will match		to be or not 2 b	and	2 b | ! 2 b
+
+About names: the preceding # on all other definitions is optional and will be removed.
+
+@define <name>(<args>) as <tokens> where <args> are comma-separated tokens.
+This is the most like the C macro function
+*/
+//+ The undef directive
+/* Will undefine any previously defined macros
+Syntax: @undef <name> where <name> is NOT preceded by a #
+*/
+
+/** One last note **/
+
+// The ; at the end of a line is optional in most cases
