@@ -1,3 +1,13 @@
-@define stringize(V) as #V
+//print ("test");
+class Test{
+	function new(name){
+		this.name = name;
+	}
+	function toString(){
+		return this.name;
+	}
+}
 
-print(stringize(V))
+var obj = new Test("test");
+
+print(obj instanceof Test);

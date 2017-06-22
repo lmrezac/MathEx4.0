@@ -297,4 +297,11 @@ public class Program{
 			statement.execute(scope);
 		}
 	}
+	public String toString(){
+		String result = "";
+		for(Statement s : statements){
+			result += s.toString() + "\n";
+		}
+		return result.trim();
+	}
 }

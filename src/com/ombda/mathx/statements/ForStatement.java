@@ -58,5 +58,20 @@ public class ForStatement extends ForLoop{
 		
 		scope.pop();
 	}
+	
+	public String toString(){
+		String result = "for(";
+		for(Statement s : init){
+			result += s+",";
+		}
+		if(result.endsWith(",")) result = result.substring(0, result.length()-1);
+		result += ";"+condition+";";
+		for(Expression expr : increment){
+			result += expr + ",";
+		}
+		if(result.endsWith(",")) result = result.substring(0, result.length()-1);
+		result += ")\n"+body;
+		return result;
+	}
 
 }

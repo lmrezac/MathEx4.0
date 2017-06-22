@@ -12,4 +12,7 @@ public class EmptyStatement extends Statement{
 	@Override
 	public void execute(Scope scope){}
 
+	public String toString(){
+		return "";
+	}
 }

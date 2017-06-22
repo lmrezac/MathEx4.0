@@ -39,5 +39,9 @@ public class ForCountStatement extends ForLoop{
 			}
 		}catch(Break b){}
 	}
+	
+	public String toString(){
+		return "for("+count+")\n"+body;
+	}
 
 }

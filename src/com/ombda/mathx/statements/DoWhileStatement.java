@@ -17,6 +17,7 @@ public class DoWhileStatement extends Statement{
 	private Expression condition;
 	private Statement statement;
 	private boolean until;
+
 	public DoWhileStatement(Position p, Expression condition, Statement statement, boolean until){
 		super(p);
 		this.condition = condition;
@@ -24,13 +25,14 @@ public class DoWhileStatement extends Statement{
 		params.add(null);
 		this.until = until;
 	}
-	
+
 	private List<Value> params = new ArrayList<>();
-	
+
 	private List<Value> setParams(Value v){
-		params.set(0,v);
+		params.set(0, v);
 		return params;
 	}
+
 	@Override
 	public void execute(Scope scope){
 		Value cast = Type.BOOLEAN.getMember(Operators.cast);
@@ -40,8 +42,11 @@ public class DoWhileStatement extends Statement{
 				try{
 					statement.execute(scope);
 				}catch(Continue c){}
-			}while(cast.call(scope, setParams(condition.eval(scope))) == bool);
+			}while(cast.call(scope, setParams(condition.eval(scope)))==bool);
 		}catch(Break b){}
 	}
 
+	public String toString(){
+		return "do\n"+statement+"\n"+(until? "until" : "while")+"("+condition.toString()+")";
+	}
 }

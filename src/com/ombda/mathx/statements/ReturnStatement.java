@@ -18,4 +18,7 @@ public class ReturnStatement extends Statement{
 		throw new Return(position(),v);
 	}
 
+	public String toString(){
+		return "return "+expr;
+	}
 }

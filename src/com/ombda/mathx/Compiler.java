@@ -231,7 +231,7 @@ public class Compiler{
 				result = new ArrayList<>();
 			}
 		}while(changed);
-		System.out.println("final result = "+result);
+		//System.out.println("final result = "+result);
 		return result;
 	}
 	private static boolean evalIfStatement(final String statement, final Map<String, Macro> defined){

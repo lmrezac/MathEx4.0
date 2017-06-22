@@ -14,5 +14,9 @@ public class ContinueStatement extends Statement{
 	public void execute(Scope scope){
 		throw new Continue();
 	}
+	
+	public String toString(){
+		return "continue";
+	}
 
 }

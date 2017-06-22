@@ -13,4 +13,8 @@ public class Stop extends Statement{
 	public void execute(Scope scope){
 		System.exit(exit_status);
 	}
+	
+	public String toString(){
+		return "stop "+exit_status;
+	}
 }

@@ -15,4 +15,7 @@ public class ExpressionStatement extends Statement{
 		scope.set("Ans", expr.eval(scope));
 	}
 	
+	public String toString(){
+		return expr.toString();
+	}
 }

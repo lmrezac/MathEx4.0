@@ -28,4 +28,11 @@ public class WithStatement extends Statement{
 		scope.pop();
 	}
 
+	public String toString(){
+		String result = "with("+object+"){\n";
+		for(Statement s : statements){
+			result += s + "\n";
+		}
+		return result + "}";
+	}
 }

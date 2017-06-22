@@ -62,4 +62,7 @@ public class ForEachStatement extends ForLoop{
 			scope.pop();
 	}
 
+	public String toString(){
+		return "for("+(create? "var " : "")+name+" in "+list+")\n"+body;
+	}
 }

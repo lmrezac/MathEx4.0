@@ -38,4 +38,8 @@ public class DeleteStatement extends Statement{
 		}else throw new RuntimeException("Cannot delete reference of type "+this.value.getClass().getName());
 	}
 	
+	public String toString(){
+		return "delete "+value.toString();
+	}
+	
 }

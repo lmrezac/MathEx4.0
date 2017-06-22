@@ -9,7 +9,10 @@ public class Main{
 	public static void main(String[] args) throws FileNotFoundException{
 		File f = new File("prog.mx");
 		
-		Compiler.compile(f).run();
+		Program program = Compiler.compile(f);
+		
+		
+		program.run();
 		/**/
 		/*
 		System.out.println(Arrays.toString("a,b,c".split(",")));

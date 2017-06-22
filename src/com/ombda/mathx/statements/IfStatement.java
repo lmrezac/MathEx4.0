@@ -30,5 +30,9 @@ public class IfStatement extends Statement{
 			ifFalse.execute(scope);
 		}
 	}
+	
+	public String toString(){
+		return "if("+condition+")\n"+ifTrue+(ifFalse == null? "" : "\nelse\n"+ifFalse);
+	}
 
 }

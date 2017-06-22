@@ -65,14 +65,14 @@
 Name			| Values		| Description
 --------------------------------------
 undefined	| undefined	| when something is undefined, it literally has no definition.
-				| null 			| The null literal is used when there is an absence of value.
-boolean		| false			| A.K.A. 'no'
-				| true			| A.K.A. 'yes'
-number		| 0, 1, 2.5,.	| Numbers, all stored as double-precision decimals whether you like it or not
-string		| "hello"		| Strings represent words or series of letters. 
-				|					|   Can be indexed. They are like objects, with accessible functions.
-array			| {1,2,3}		| Arrays are sequences of values - they don't have to be the
-				|					|   same data type. Can be indexed. These too are like objects.
+			| null 		| The null literal is used when there is an absence of value.
+boolean		| false		| A.K.A. 'no'
+			| true		| A.K.A. 'yes'
+number		| 0, 1, 2.5	| Numbers, all stored as double-precision decimals whether you like it or not
+string		| "hello"	| Strings represent words or series of letters. 
+			|			|   Can be indexed. They are like objects, with accessible functions.
+array		| {1,2,3}	| Arrays are sequences of values - they don't have to be the
+			|			|   same data type. Can be indexed. These too are like objects.
 object		| {age:5.2}	| Objects are like dictionarys: they are a set of key-value pairs.
 
 +/
@@ -130,8 +130,8 @@ Examples:						*/
 32767 >>>	12			;
 ~14						; // ~binary(000000001110) == binary(11111111110001) or something
 3 ^^ 2					;
-4 & 2						;
-3 | 2						;
+4 & 2					;
+3 | 2					;
 
 /** Section 6: Strings and Arrays **/
 
@@ -438,7 +438,7 @@ function f(x){
 //+ About function parameters: +//
 /*
 
-When a function s called, the passed values get set to the variable names 
+When a function is called, the passed values get set to the variable names 
 in the function header. These are always local variables, 
 and have precedence over global variables with the same names.
 
@@ -536,32 +536,32 @@ function foo[value=x](bar){...}
 /+
 Operator Name 		| Syntax	| JS?	| Description
 -------------------------------------------------------------
-comparison				| a <> b	| no	| Equivalent to calling @code a.compareTo(b) in Java
+comparison			| a <> b	| no	| Equivalent to calling @code a.compareTo(b) in Java
 conditional			| a? b : c	| yes	| If @a is true, evaluates to @b. Otherwise, evaluates to @c.
 null-catch access	| a?.b		| no	| Equivalent to @code a? a.b : a
-index						| a[b]		| yes	| See Arrays and Objects section
-slice						| a[b,c]	| no	| See Arrays and Objects section
-in							| a in b 	| yes	| See Arrays and Objects section. Prefix the operator with ! to inverse the operation.
-xor						| a ^^ b	| ___	| Equivalent to JavaScript's ^ operator. This is because the ^ operator is for exponentiation (as it always should have been).
-exponentiation		| a^b			| ___	| @a to the power of @b. Equivalent to JavaScript's ** operator.
-assignment				| a op= b	| ___	| If you follow certain operators with an =, it will become an assignment operator.
-							|				|		| For the operator @op in the given syntax, the expression is equivalent to a = a @op b.
-							|				|		| Valid operators are: + - * / % ^ & | ^^ && || >> << >>> 
+index				| a[b]		| yes	| See Arrays and Objects section
+slice				| a[b,c]	| no	| See Arrays and Objects section
+in					| a in b 	| yes	| See Arrays and Objects section. Prefix the operator with ! to inverse the operation.
+xor					| a ^^ b	| ___	| Equivalent to JavaScript's ^ operator. This is because the ^ operator is for exponentiation (as it always should have been).
+exponentiation		| a^b		| ___	| @a to the power of @b. Equivalent to JavaScript's ** operator.
+assignment			| a op= b	| ___	| If you follow certain operators with an =, it will become an assignment operator.
+					|			|		| For the operator @op in the given syntax, the expression is equivalent to a = a @op b.
+					|			|		| Valid operators are: + - * / % ^ & | ^^ && || >> << >>> 
 negation assign		| --= a		| no	| Equivalent to @code a = -a
 absolute assign		| ++= a		| no	| Equivalent to @code a = +a or @code a = Math.abs(a)
-not assign				| !!= a		| no	| Equivalent to @code a = !a
+not assign			| !!= a		| no	| Equivalent to @code a = !a
 member call assign	| a.=b		| no	| Equivalent to @code a = a.b
 multiple equality	| a.==(b)	| no	| Acts like a function. For all the arguments passed, @code a == b is tested. Returns true if any one of the arguments returns true.
-							| a.==&(b)	| no	| Like the above, but tests if ALL the arguments passed equal @a.
+					| a.==&(b)	| no	| Like the above, but tests if ALL the arguments passed equal @a.
 mult. inequality	| a.!=(b)	| no	| Like multiple equality: for all the arguments passed, @code a != b is tested. Returns true if all the arguments do not equal @a.
-							| a.!=|(b)	| no	| Like the above, but returns true if one or more of the arguments do not equal @a.
-of							| f of x	| no	| Equivalent to f(x)
-instanceof				| a instanceof b| Tests if a was created with a class that is, or extends, b. Prefix the operator with ! to inverse the operation.
-same instance			| a === b	| yes	| Tests if a is the same instance as b. That is, both variables refer to the same spot in memory.
-							| a !== b	| yes	| Equivalent to !(a === b).
-positate				| +a			| idk	| Equivalent to Math.abs(a)
-cast						| T(a)		| yes	| Calls the type @T's cast function. Equivalent to T.cast(a)
-call						| a(b)		| yes	| Calls the object's call function, or if it is actually a function, calls that function.
+					| a.!=|(b)	| no	| Like the above, but returns true if one or more of the arguments do not equal @a.
+of					| f of x	| no	| Equivalent to f(x)
+instanceof			| a instanceof b| Tests if a was created with a class that is, or extends, b. Prefix the operator with ! to inverse the operation.
+same instance		| a === b	| yes	| Tests if a is the same instance as b. That is, both variables refer to the same spot in memory.
+					| a !== b	| yes	| Equivalent to !(a === b).
+positate			| +a		| idk	| Equivalent to Math.abs(a)
+cast				| T(a)		| yes	| Calls the type @T's cast function. Equivalent to T.cast(a)
+call				| a(b)		| yes	| Calls the object's call function, or if it is actually a function, calls that function.
 
 +/
 
@@ -615,22 +615,22 @@ The pattern syntax is below:
 */
 /+
 Pattern			| Definition
-x					| matches the token 'x' only
-p?					| matches the token 'p' optionally, otherwise doesn't increment the search.
+x				| matches the token 'x' only
+p?				| matches the token 'p' optionally, otherwise doesn't increment the search.
 (pattern)		| matches the contents of the pattern. Used with ? or |
 a|b				| matches the token 'a' or the token 'b'
 <A>				| matches any word token or number token, and sets a variable to that token. If it is encountered a second time, will only match the saved token.
-					| When the replacement is computed, any ${A} that is encountered is replaced with that token.
+				| When the replacement is computed, any ${A} that is encountered is replaced with that token.
 <%>				| matches any token at all, then saves the variable ${%}
-x{#}				| where # is an integer. Matches x a minimum of # times.
-x+					| matches x one or more times
-x*					| matches x zero or more times
-%#					| matches the # token
-%%					| matches the % token
-%*					| matches the * token
-%+					| matches the + token
-%?					| matches the ? token
-%|					| matches the | token
+x{#}			| where # is an integer. Matches x a minimum of # times.
+x+				| matches x one or more times
+x*				| matches x zero or more times
+%#				| matches the # token
+%%				| matches the % token
+%*				| matches the * token
+%+				| matches the + token
+%?				| matches the ? token
+%|				| matches the | token
 
 +/
 /* So, some examples:

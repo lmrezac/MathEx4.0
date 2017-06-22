@@ -44,4 +44,14 @@ public class VariableInitializer extends Statement{
 		return value instanceof FunctionLiteral;
 	}
 
+	public String toString(){
+		String result = "";
+		if(constant)
+			result += "const ";
+		if(immutable)
+			result += "immutable ";
+		result += "var "+name;
+		if(value != null) result += "="+value;
+		return result;
+	}
 }

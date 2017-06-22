@@ -47,4 +47,12 @@ public class ClassDefinition extends Statement{
 		t.finalize();
 		
 	}
+	
+	public String toString(){
+		String result = "class "+name+" "+(parent == null || parent.isEmpty()? "" : "extends "+parent.toString())+"{\n";
+		for(VariableInitializer var : values){
+			result += var.toString()+"\n";
+		}
+		return result + "}";
+	}
 }

@@ -21,4 +21,11 @@ public class BodyStatement extends Statement{
 		scope.pop();
 	}
 
+	public String toString(){
+		String result = "{\n";
+		for(Statement s : statements){
+			result += s.toString() + "\n";
+		}
+		return result + "}";
+	}
 }

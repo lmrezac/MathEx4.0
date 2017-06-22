@@ -44,4 +44,8 @@ public class WhileStatement extends Statement{
 		}catch(Break b){}
 	}
 
+	public String toString(){
+		String result = (until? "until" : "while") + "(" + condition + ")\n"+statement;
+		return result;
+	}
 }

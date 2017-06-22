@@ -14,5 +14,9 @@ public class BreakStatement extends Statement{
 	public void execute(Scope scope){
 		throw new Break();
 	}
+	
+	public String toString(){
+		return "break";
+	}
 
 }

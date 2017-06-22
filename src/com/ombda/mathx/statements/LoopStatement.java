@@ -21,5 +21,9 @@ public class LoopStatement extends Statement{
 			}
 		}catch(Break b){}
 	}
+	
+	public String toString(){
+		return "loop\n"+body;
+	}
 
 }
